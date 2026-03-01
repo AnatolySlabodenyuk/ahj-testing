@@ -6,24 +6,29 @@
   <title>Credit Card Validator</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Валидатор банковских карт</h1>
-    <div class="card-widget">
-      <div class="card-header">
-        <span class="card-label">Номер карты</span>
-        <span id="card-type" class="card-type-badge"></span>
-      </div>
+  <div class="widget">
+    <div class="card-icons">
+      <img id="icon-visa"       class="card-icon" src="img/visa.svg"       alt="Visa" data-type="visa">
+      <img id="icon-mastercard" class="card-icon" src="img/mastercard.svg" alt="Mastercard" data-type="mastercard">
+      <img id="icon-amex"       class="card-icon" src="img/amex.svg"       alt="American Express" data-type="amex">
+      <img id="icon-discover"   class="card-icon" src="img/discover.svg"   alt="Discover" data-type="discover">
+      <img id="icon-mir"        class="card-icon" src="img/mir.svg"        alt="Mir" data-type="mir">
+    </div>
+
+    <div class="input-row">
       <input
         id="card-number"
         class="card-input"
         type="text"
         inputmode="numeric"
-        placeholder="0000 0000 0000 0000"
+        placeholder="4111111111111111"
         maxlength="19"
         autocomplete="cc-number"
       />
-      <div id="card-status" class="card-status"></div>
+      <button id="validate-btn" class="validate-btn">Click to Validate</button>
     </div>
+
+    <div id="card-status" class="card-status"></div>
   </div>
 </body>
 </html>

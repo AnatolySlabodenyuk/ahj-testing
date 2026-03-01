@@ -1,13 +1,5 @@
 import { luhnCheck, detectCardType } from "./validator";
 
-const CARD_LABELS = {
-  visa: "Visa",
-  mastercard: "Mastercard",
-  amex: "Amex",
-  mir: "Мир",
-  discover: "Discover",
-};
-
 function formatCardNumber(value) {
   const digits = value.replace(/\D/g, "").slice(0, 16);
   return digits.replace(/(.{4})/g, "$1 ").trim();
@@ -15,30 +7,38 @@ function formatCardNumber(value) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("card-number");
-  const typeBadge = document.getElementById("card-type");
+  const btn = document.getElementById("validate-btn");
   const statusEl = document.getElementById("card-status");
+  const icons = document.querySelectorAll(".card-icon");
 
   input.addEventListener("input", () => {
     const raw = input.value.replace(/\D/g, "");
     input.value = formatCardNumber(raw);
 
     const type = detectCardType(raw);
-    typeBadge.textContent = type ? CARD_LABELS[type] : "";
-    typeBadge.className = "card-type-badge" + (type ? ` badge-${type}` : "");
+    icons.forEach((icon) => {
+      icon.classList.toggle("active", icon.dataset.type === type);
+    });
 
-    if (raw.length >= 13) {
-      const valid = luhnCheck(raw);
-      input.classList.toggle("input-valid", valid);
-      input.classList.toggle("input-invalid", !valid);
-      statusEl.textContent = valid
-        ? "Карта действительна"
-        : "Неверный номер карты";
-      statusEl.className =
-        "card-status " + (valid ? "status-valid" : "status-invalid");
-    } else {
-      input.classList.remove("input-valid", "input-invalid");
-      statusEl.textContent = "";
-      statusEl.className = "card-status";
+    input.classList.remove("input-valid", "input-invalid");
+    statusEl.textContent = "";
+    statusEl.className = "card-status";
+  });
+
+  btn.addEventListener("click", () => {
+    const raw = input.value.replace(/\D/g, "");
+    if (raw.length < 13) {
+      statusEl.textContent = "Введите номер карты";
+      statusEl.className = "card-status status-invalid";
+      return;
     }
+    const valid = luhnCheck(raw);
+    input.classList.toggle("input-valid", valid);
+    input.classList.toggle("input-invalid", !valid);
+    statusEl.textContent = valid
+      ? "Карта действительна"
+      : "Неверный номер карты";
+    statusEl.className =
+      "card-status " + (valid ? "status-valid" : "status-invalid");
   });
 });
