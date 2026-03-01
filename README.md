@@ -1,17 +1,24 @@
-![CI](https://github.com/AnatolySlabodenyuk/netology-ahj-env/actions/workflows/web.yml/badge.svg)
+![CI](https://github.com/AnatolySlabodenyuk/ahj-testing/actions/workflows/web.yml/badge.svg)
 
-# Netology AHJ — Environment Setup
+# Credit Card Validator
 
-Homework project for the "Working Environment" lesson.
+Homework project — Testing Organization (AHJ-50).
+
+Live demo: https://anatolyslabodenyuk.github.io/ahj-testing/
+
+## Description
+
+Interactive widget for credit card number input with:
+- **Luhn algorithm** validation
+- **Payment system detection** (Visa, Mastercard, Amex, Mir, Discover)
+- Real-time visual feedback
 
 ## Stack
 
-- Webpack 5
-- Babel
+- Webpack 5, Babel
 - ESLint + Prettier
-- Jest
-- GitHub Actions CI/CD
-- GitHub Pages
+- Jest (unit tests)
+- GitHub Actions CI/CD → GitHub Pages
 
 ## Scripts
 

@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Credit Card Validator</title>
 </head>
 <body>
-<h1>Hello, from Netology!</h1>
-<img src="img/netology.svg" alt="Netology Logo">
+  <div class="container">
+    <h1>Валидатор банковских карт</h1>
+    <div class="card-widget">
+      <div class="card-header">
+        <span class="card-label">Номер карты</span>
+        <span id="card-type" class="card-type-badge"></span>
+      </div>
+      <input
+        id="card-number"
+        class="card-input"
+        type="text"
+        inputmode="numeric"
+        placeholder="0000 0000 0000 0000"
+        maxlength="19"
+        autocomplete="cc-number"
+      />
+      <div id="card-status" class="card-status"></div>
+    </div>
+  </div>
 </body>
 </html>
